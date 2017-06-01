@@ -8,7 +8,7 @@
   },
   "name": "ultimail-provider-postmark",
   "version": "0.0.1",
-  "description": "Provider middleware for Ultimail that adds support for sending via Postmark.",
+  "description": "Provider middleware for Ultimail that adds support for sending emails via Postmark.",
   "keywords": [
     "ultimail",
     "provider",
