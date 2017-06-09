@@ -7,7 +7,7 @@
     "url": "https://github.com/saikojosh/Ultimail-Provider-Postmark/issues"
   },
   "name": "ultimail-provider-postmark",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provider middleware for Ultimail that adds support for sending emails via Postmark.",
   "keywords": [
     "ultimail",
