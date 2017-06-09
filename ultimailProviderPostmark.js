@@ -10,7 +10,7 @@ const postmark = require(`postmark`);
 /*
  * Sends the given email via the Postmark API.
  */
-function sendEmail (email, client) {
+function sendEmail (email, config, client) {
 
 	return new Promise((resolve, reject) => {
 
@@ -33,10 +33,13 @@ function sendEmail (email, client) {
 		client.sendEmail(properties, (err, response) => {
 
 			if (err) { return reject(err); }
-			if (response.Message !== `OK` || response.ErrorCode !== 0) {
-				reject(new Error(`Send email failed with error code "${response.ErrorCode}".`));
+
+			// Email did not send and we need to throw an error.
+			if (config.throwOnFailure && (response.Message !== `OK` || response.ErrorCode !== 0)) {
+				return reject(new Error(`Send email failed with error code "${response.ErrorCode}".`));
 			}
 
+			// Otherwise just return the Postmark response directly.
 			return resolve(response);
 
 		});
@@ -52,6 +55,7 @@ module.exports = function ultimailProviderPostmark (_config) {
 
 	const config = extender.defaults({
 		apiKey: null,
+		throwOnFailure: true,
 	}, _config);
 
 	const client = new postmark.Client(config.apiKey);
@@ -60,7 +64,7 @@ module.exports = function ultimailProviderPostmark (_config) {
 	return (email, options, next) => {
 
 		Promise.resolve()
-			.then(() => sendEmail(email, client))
+			.then(() => sendEmail(email, config, client))
 			.then(result => next(null, result))
 			.catch(err => next(err));
 
