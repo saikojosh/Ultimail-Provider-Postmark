@@ -2,7 +2,7 @@
 Provider middleware for [Ultimail](https://www.npmjs.org/package/ultimail) that adds support for sending emails via [Postmark](https://postmarkapp.com/).
 
 ## Quick Start
-You need to configure this middleware as a "provider" using `mailer.configure()` method:
+You need to configure this middleware as an [Ultimail](https://www.npmjs.org/package/ultimail) "provider" using the `mailer.configure()` method:
 
 ```javascript
 const Ultimail = require(`ultimail`);
