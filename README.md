@@ -21,8 +21,8 @@ mailer.configure(`provider`, ultimailProviderPostmark({
 ## Configuration
 You can pass the following config options to this middleware:
 
-|----------------|---------------|-------------|
 | Option 				 | Default Value | Description |
+|----------------|---------------|-------------|
 | apiKey 				 |							 | The API server key that Postmark assigns to your server. |
 | throwOnFailure | `true`				 | Set false to just return the Postmark response when an email fails to send, instead of throwing an error. |
 
